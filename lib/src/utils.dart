@@ -7,7 +7,7 @@ import 'package:flutter_stetho/src/method_channel_controller.dart';
 /// Create a response transformer that can intercept and pipe the http response
 /// data to the Method channel
 StreamTransformer<List<int>, List<int>> createResponseTransformer(String id) {
-  return new StreamTransformer.fromHandlers(handleData: (data, sink) {
+  return StreamTransformer.fromHandlers(handleData: (data, sink) {
     sink.add(data);
     MethodChannelController.onDataReceived({"data": data, "id": id});
   }, handleError: (error, stacktrace, sink) {
@@ -43,9 +43,9 @@ Map<String, String> headersToMap(HttpHeaders headers) {
 ///
 /// ### Example
 ///
-///     final String id = new Uuid().generateV4();
+///     final String id = Uuid().generateV4();
 class Uuid {
-  final Random _random = new Random();
+  final Random _random = Random();
 
   /// Generate a version 4 (random) uuid. This is a uuid scheme that only uses
   /// random numbers as the source of the generated uuid.
